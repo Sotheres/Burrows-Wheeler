@@ -3,13 +3,15 @@ import edu.princeton.cs.algs4.BinaryStdOut;
 
 public class MoveToFront {
 
+    private static final int ASCII_EXTENDED = 256;
+
     public static void encode() {
-        char[] sequence = new char[256];
-        for (int i = 0; i < 256; i++) {
+        char[] sequence = new char[ASCII_EXTENDED];
+        for (int i = 0; i < ASCII_EXTENDED; i++) {
             sequence[i] = (char) i;
         }
 
-        while(!BinaryStdIn.isEmpty()) {
+        while (!BinaryStdIn.isEmpty()) {
             char ch = BinaryStdIn.readChar();
             int charIndex = 0;
             for (int i = 0; i < sequence.length; i++) {
@@ -29,17 +31,17 @@ public class MoveToFront {
     }
 
     public static void decode() {
-        char[] sequence = new char[256];
-        for (int i = 0; i < 256; i++) {
+        char[] sequence = new char[ASCII_EXTENDED];
+        for (int i = 0; i < ASCII_EXTENDED; i++) {
             sequence[i] = (char) i;
         }
 
-        while(!BinaryStdIn.isEmpty()) {
-            int ch = BinaryStdIn.readChar();
-            BinaryStdOut.write(sequence[ch], 8);
+        while (!BinaryStdIn.isEmpty()) {
+            int index = BinaryStdIn.readInt(8);
+            BinaryStdOut.write(sequence[index], 8);
 
-            char temp = sequence[ch];
-            for (int i = ch; i > 0; i++) {
+            char temp = sequence[index];
+            for (int i = index; i > 0; i--) {
                 sequence[i] = sequence[i - 1];
             }
             sequence[0] = temp;
